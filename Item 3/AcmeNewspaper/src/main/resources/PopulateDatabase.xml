@@ -103,6 +103,18 @@
 		</property>
 	</bean>
 	
+	<bean id="userAccount8" class="security.UserAccount">
+		<property name="username" value="admin2" />
+		<property name="password" value="c84258e9c39059a89ab77d846ddab909" />
+		<property name="authorities">
+			<list>
+				<bean class="security.Authority">
+					<property name="authority" value="ADMIN" />
+				</bean>
+			</list>
+		</property>
+	</bean>
+	
 	
 	<!-- Admin -->	
 	<bean id="admin" class="domain.Administrator">
@@ -120,6 +132,33 @@
 				<ref bean="outboxFolderAdministrator1" />
 				<ref bean="notificationboxFolderAdministrator1" />
 				<ref bean="trashboxFolderAdministrator1" />
+			</list>
+		</property>
+		<property name="messagesSent">
+			<list>
+			</list>
+		</property>
+		<property name="messagesReceived">
+			<list>
+			</list>
+		</property>
+	</bean>
+	
+	<bean id="admin2" class="domain.Administrator">
+		<property name="userAccount" ref="userAccount8" />
+		<property name="name" value="Francisco" />
+		<property name="surname" value="Samper Villagrán" />
+		<property name="emailAddress" value="ponsavi@acme.org" />
+		<property name="phoneNumber" value="656343000" />
+		<property name="postalAddress" value="Calle Fontenla, 2" />
+		<property name="folders">
+			<list>
+				<ref bean="rootFolderAdministrator2" />
+				<ref bean="spamFolderAdministrator2" />
+				<ref bean="inboxFolderAdministrator2" />
+				<ref bean="outboxFolderAdministrator2" />
+				<ref bean="notificationboxFolderAdministrator2" />
+				<ref bean="trashboxFolderAdministrator2" />
 			</list>
 		</property>
 		<property name="messagesSent">
@@ -1222,6 +1261,95 @@
 		<property name="systemFolders" value="True" />
 	</bean>
 	
+	<bean id="rootFolderAdministrator2" class="domain.Folder">
+		<property name="name" value="Root" />
+		<property name="folders">
+			<list>
+				<ref bean="spamFolderAdministrator2" />
+				<ref bean="inboxFolderAdministrator2" />
+				<ref bean="outboxFolderAdministrator2" />
+				<ref bean="notificationboxFolderAdministrator2" />
+				<ref bean="trashboxFolderAdministrator2" />
+			</list>
+		</property>
+		<property name="messages">
+			<list>
+			</list>
+		</property>
+		<property name="systemFolders" value="True" />
+	</bean>
+
+	<bean id="inboxFolderAdministrator2" class="domain.Folder">
+		<property name="name" value="Inbox" />
+		
+		<property name="parent" ref="rootFolderAdministrator2" />
+		<property name="folders">
+			<list>
+			</list>
+		</property>
+		<property name="messages">
+			<list>
+			</list>
+		</property>
+		<property name="systemFolders" value="True" />
+	</bean>
+	<bean id="outboxFolderAdministrator2" class="domain.Folder">
+		<property name="name" value="Outbox" />
+		
+		<property name="parent" ref="rootFolderAdministrator2" />
+		<property name="folders">
+			<list>
+			</list>
+		</property>
+		<property name="messages">
+			<list>
+			</list>
+		</property>
+		<property name="systemFolders" value="True" />
+	</bean>
+	<bean id="notificationboxFolderAdministrator2" class="domain.Folder">
+		<property name="name" value="Notification Box" />
+		
+		<property name="parent" ref="rootFolderAdministrator2" />
+		<property name="folders">
+			<list>
+			</list>
+		</property>
+		<property name="messages">
+			<list>
+			</list>
+		</property>
+		<property name="systemFolders" value="True" />
+	</bean>
+	<bean id="trashboxFolderAdministrator2" class="domain.Folder">
+		<property name="name" value="TrashBox" />
+		
+		<property name="parent" ref="rootFolderAdministrator2" />
+		<property name="folders">
+			<list>
+			</list>
+		</property>
+		<property name="messages">
+			<list>
+			</list>
+		</property>
+		<property name="systemFolders" value="True" />
+	</bean>
+	<bean id="spamFolderAdministrator2" class="domain.Folder">
+		<property name="name" value="Spam" />
+		
+		<property name="parent" ref="rootFolderAdministrator2" />
+		<property name="folders">
+			<list>
+			</list>
+		</property>
+		<property name="messages">
+			<list>
+			</list>
+		</property>
+		<property name="systemFolders" value="True" />
+	</bean>
+	
 	<bean id="rootFolderUser1" class="domain.Folder">
 		<property name="name" value="Root" />
 		
@@ -1832,6 +1960,31 @@
 		<property name="administrator" ref="admin"/>
 		<property name="newspaper" ref="newspaper2"/>
 	</bean>
+	
+		<bean id="cosaX3" class="domain.CosaX">
+		<property name="ticker" value="111111-AAAC" />
+		<property name="title" value="titulo3" />
+		<property name="description" value="descripcion" />
+		<property name="gauge" value="3" />
+		<property name="publicationDate" value="2017/09/15 8:00"/>
+		<property name="draftMode" value="false"/>
+		<property name="administrator" ref="admin2"/>
+		<property name="newspaper" ref="newspaper1"/>
+	</bean>
+	
+	<bean id="cosaX4" class="domain.CosaX">
+		<property name="ticker" value="111111-AAAD" />
+		<property name="title" value="titulo4" />
+		<property name="description" value="descripcion" />
+		<property name="gauge" value="2" />
+		<property name="publicationDate" value="2018/09/15 8:00"/>
+		<property name="draftMode" value="true"/>
+		<property name="administrator" ref="admin2"/>
+		<property name="newspaper" ref="newspaper2"/>
+	</bean>
+	
+	
+	
 	
 
 	
