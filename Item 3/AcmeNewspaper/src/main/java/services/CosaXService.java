@@ -79,7 +79,7 @@ public class CosaXService {
 	}
 
 	public CosaX save(final CosaX cosaX) {
-		CosaX result;
+		CosaX result, cosaxDB;
 		Actor actor;
 		Date date;
 
@@ -88,8 +88,9 @@ public class CosaXService {
 		Assert.isTrue(actor instanceof Administrator);
 		Assert.isTrue(cosaX.getPublicationDate() == null || cosaX.getPublicationDate().after(date));
 		if (cosaX.getId() != 0) {
+			cosaxDB = this.findOne(cosaX.getId());
 			Assert.isTrue(cosaX.getAdministrator().getId() == actor.getId());
-			Assert.isTrue(cosaX.isDraftMode());
+			Assert.isTrue(cosaxDB.isDraftMode());
 		}
 		result = this.cosaXRepository.save(cosaX);
 
@@ -144,6 +145,7 @@ public class CosaXService {
 			cosaXDB = this.findOne(cosaX.getId());
 			cosaX.setVersion(cosaXDB.getVersion());
 			cosaX.setAdministrator(cosaXDB.getAdministrator());
+			cosaX.setTicker(cosaXDB.getTicker());
 		}
 		this.validator.validate(cosaX, binding);
 
