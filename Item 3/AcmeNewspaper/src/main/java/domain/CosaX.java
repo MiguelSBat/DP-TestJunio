@@ -5,8 +5,10 @@ import java.util.Date;
 
 import javax.persistence.Access;
 import javax.persistence.AccessType;
+import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.ManyToOne;
+import javax.validation.constraints.Pattern;
 
 import org.hibernate.validator.constraints.NotBlank;
 import org.hibernate.validator.constraints.Range;
@@ -20,9 +22,12 @@ public class CosaX extends DomainEntity {
 	private String	description;
 	private Integer	gauge;
 	private Date	publicationDate;
+	private boolean	draftMode;
 
 
 	@NotBlank
+	@Pattern(regexp = "[0-9]{6}-[A-Z]{4}")
+	@Column(unique = true)
 	public String getTicket() {
 		return this.ticket;
 	}
@@ -64,6 +69,14 @@ public class CosaX extends DomainEntity {
 
 	public void setPublicationDate(final Date publicationDate) {
 		this.publicationDate = publicationDate;
+	}
+
+	public boolean isDraftMode() {
+		return this.draftMode;
+	}
+
+	public void setDraftMode(final boolean draftMode) {
+		this.draftMode = draftMode;
 	}
 
 
