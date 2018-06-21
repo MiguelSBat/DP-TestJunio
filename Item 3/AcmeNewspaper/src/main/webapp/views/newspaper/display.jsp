@@ -100,9 +100,11 @@
 	<display:column property="publicationDate"
 		format="{0,date,${dateFormat}}" title="${publicationDateHeader}" />
 
-
-	<spring:message code="cosax.gauge" var="gaugeHeader" />
-	<display:column title="${gaugeHeader}"/>
+	<spring:message code="cosax.gauge" var="cosaxGauge" />
+	<display:column title="${cosaxGauge}" sortable="false">
+		<jstl:set value="${row.gauge}" var="color"/>
+		<div class="gauge${color}">${row.gauge}</div>
+	</display:column>
 	
 
 </display:table>

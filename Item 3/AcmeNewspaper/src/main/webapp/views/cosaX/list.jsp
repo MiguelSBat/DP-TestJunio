@@ -41,20 +41,28 @@
 	<display:column property="publicationDate"
 		format="{0,date,${dateFormat}}" title="${publicationDateHeader}" />
 
-
-	<spring:message code="cosax.gauge" var="gaugeHeader" />
-	<display:column property="gauge" title="${gaugeHeader}"/>
-	
+	<spring:message code="cosax.gauge" var="cosaxGauge" />
+	<display:column title="${cosaxGauge}" sortable="false">
+		<jstl:set value="${row.gauge}" var="color"/>
+		<div class="gauge${color}">${row.gauge}</div>
+	</display:column>
 
 	<security:authorize access="hasRole('ADMIN')">
+		
 		<display:column>
+		<jstl:if test="${row.draftMode==true}">	
 			<a href="administrator/cosax/edit.do?cosaxId=${row.id}"><spring:message
 					code="cosax.edit" /></a>
+		</jstl:if>
 		</display:column>
+		
 		<display:column>
+		<jstl:if test="${row.draftMode==true}">	
 			<a href="administrator/cosax/delete.do?cosaxId=${row.id}"><spring:message
 					code="chirp.delete" /></a>
+		</jstl:if>
 		</display:column>
+		
 	</security:authorize>
 </display:table>
 
