@@ -1,0 +1,13 @@
+A query that returns the ratio of newspapers with at least one CosaX.
+
+
+select count(distinct c.newspaper)*100/(select count(n) from Newspaper n) from CosaX c);
+
+
+A query that returns the administrator/s who has written more CosaXs.
+
+
+
+ select  distinct c.newspaper.id from CosaX c order by c DESC limit 1;
+
+select 1 c.administrator FROM CosaX c ORDER BY c DESC LIMIT 1;
