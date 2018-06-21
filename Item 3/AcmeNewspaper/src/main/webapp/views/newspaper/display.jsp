@@ -81,7 +81,7 @@
 	</jstl:if>
 
 </div>
-	<jstl:forEach items="${cosasX}" var="cosasX">
+	<jstl:forEach items="${cosasX}" var="cosax">
 			</br>
 <display:table pagesize="5" class="displaytag" 
 	name="cosaXs"  id="row">
