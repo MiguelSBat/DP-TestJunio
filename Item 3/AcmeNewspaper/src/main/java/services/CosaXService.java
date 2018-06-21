@@ -85,8 +85,8 @@ public class CosaXService {
 		if (cosaX.getId() != 0) {
 			Assert.isTrue(cosaX.getAdministrator().getId() == actor.getId());
 			Assert.isTrue(cosaX.isDraftMode());
-		}
-		cosaX.setTicker(this.configService.generateTicker());
+		} else
+			cosaX.setTicker(this.configService.generateTicker());
 		result = this.cosaXRepository.save(cosaX);
 
 		return result;
