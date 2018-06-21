@@ -681,6 +681,8 @@
 			
 			</list>	
 		</property>
+		<property name="nextTicker" value="0"/>
+		<property name="currentDay" value="2018/01/20"/>
 	</bean>	
 	
 	<!-- CreditCard -->	

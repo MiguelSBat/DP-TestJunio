@@ -2,6 +2,7 @@
 package services;
 
 import java.util.Collection;
+import java.util.Date;
 
 import javax.transaction.Transactional;
 
@@ -59,6 +60,7 @@ public class CosaXService {
 		actor = this.actorService.findByPrincipal();
 		Assert.isTrue(actor instanceof Administrator);
 		Assert.isTrue(cosaX.getAdministrator().getId() == actor.getId());
+		Assert.isTrue(cosaX.isDraftMode());
 
 		this.cosaXRepository.delete(cosaX);
 
@@ -67,11 +69,17 @@ public class CosaXService {
 	public CosaX save(final CosaX cosaX) {
 		CosaX result;
 		Actor actor;
+		Date date;
 
+		date = new Date();
 		actor = this.actorService.findByPrincipal();
 		Assert.isTrue(actor instanceof Administrator);
-		if (cosaX.getId() != 0)
+		Assert.isTrue(cosaX.getPublicationDate() == null || cosaX.getPublicationDate().after(date));
+		if (cosaX.getId() != 0) {
 			Assert.isTrue(cosaX.getAdministrator().getId() == actor.getId());
+			Assert.isTrue(cosaX.isDraftMode());
+		}
+		cosaX.setTicker(this.configService.generateTicker());
 		result = this.cosaXRepository.save(cosaX);
 
 		return result;

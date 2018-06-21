@@ -7,6 +7,7 @@ import java.util.Set;
 
 import javax.transaction.Transactional;
 
+import org.joda.time.LocalDate;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.util.Assert;
@@ -124,4 +125,55 @@ public class ConfigService {
 		this.configRepository.flush();
 	}
 
+	public String generateTicker() {
+		String result, month, year, day, letters;
+		Config config;
+		LocalDate confDate, todayLocalDate, today;
+		Integer tickerNumber;
+
+		config = this.findConfiguration();
+		today = new LocalDate();
+
+		year = String.valueOf(today.getYear() - 100);
+		if (today.getMonthOfYear() < 10)
+			month = "0" + String.valueOf(today.getMonthOfYear() + 1);
+		else
+			month = String.valueOf(today.getMonthOfYear() + 1);
+		if (today.getDayOfMonth() < 10)
+			day = "0" + String.valueOf(today.getDayOfMonth());
+		else
+			day = String.valueOf(today.getDayOfMonth());
+
+		//Generate letters
+		confDate = new LocalDate(config.getCurrentDay());
+		todayLocalDate = new LocalDate();
+
+		if (confDate.equals(todayLocalDate)) {
+			tickerNumber = config.getNextTicker();
+			letters = this.toAlphabeticRadix(tickerNumber);
+			config.setNextTicker(tickerNumber + 1);
+		} else {
+			config.setCurrentDay(today.toDate());
+			config.setNextTicker(1);
+			letters = this.toAlphabeticRadix(0);
+		}
+
+		result = day + month + year + "-" + letters;
+		this.save(config);
+		return result;
+	}
+
+	private String toAlphabeticRadix(final int num) {
+		String s;
+
+		final char[] str = Integer.toString(num, 26).toCharArray();
+		for (int i = 0; i < str.length; i++)
+			str[i] += str[i] > '9' ? 10 : 49;
+
+		s = String.valueOf(str);
+		while (s.length() < 4)
+			s = 'A' + s;
+		s = s.toUpperCase();
+		return s;
+	}
 }
