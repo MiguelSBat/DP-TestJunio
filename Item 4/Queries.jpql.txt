@@ -14,6 +14,6 @@ select 1 c.administrator FROM CosaX c ORDER BY c DESC LIMIT 1;
 
 
 
-select max(c) from CosaX c group by c.administrator;
+select count(c) from CosaX c group by c.administrator order by count(c) DESC;
 
 select c.administrator from CosaX c group by c.administrator having count(c)=*primer resultado de la otra query*;
