@@ -54,11 +54,10 @@ public class CosaXTest extends AbstractTest {
 			newspaperId = super.getEntityId("newspaper1");
 			cosaX = this.cosaXService.create(newspaperId);
 			cosaX.setDescription(description);
-			cosaX.setDraftMode(draftMode);
+			cosaX.setDraftMode(true);
 			cosaX.setGauge(gauge);
 			cosaX.setPublicationDate(publication);
 			cosaX.setTitle(title);
-			cosaX.setTicker("000000-AAAA");
 			cosaX = this.cosaXService.save(cosaX);
 
 			this.cosaXService.flush();

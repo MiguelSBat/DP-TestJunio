@@ -14,6 +14,7 @@ import repositories.CosaXRepository;
 import domain.Actor;
 import domain.Administrator;
 import domain.CosaX;
+import domain.Newspaper;
 
 @Service
 @Transactional
@@ -21,13 +22,16 @@ public class CosaXService {
 
 	//Managed Repository ----
 	@Autowired
-	private CosaXRepository	cosaXRepository;
+	private CosaXRepository		cosaXRepository;
 
 	@Autowired
-	private ActorService	actorService;
+	private ActorService		actorService;
 
 	@Autowired
-	private ConfigService	configService;
+	private ConfigService		configService;
+
+	@Autowired
+	private NewspaperService	newspaperService;
 
 
 	//Constructors
@@ -38,10 +42,13 @@ public class CosaXService {
 	public CosaX create(final int newspaperId) {
 		CosaX result;
 		Actor actor;
+		Newspaper newspaper;
 
 		actor = this.actorService.findByPrincipal();
+		newspaper = this.newspaperService.findOne(newspaperId);
 		result = new CosaX();
 		result.setAdministrator((Administrator) actor);
+		result.setNewspaper(newspaper);
 
 		return result;
 	}
