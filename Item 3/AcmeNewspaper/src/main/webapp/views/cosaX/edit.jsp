@@ -23,6 +23,8 @@
 <form:form action="${requestURI}" modelAttribute="cosax">
 	
 	<form:hidden path="id" /> 
+	<form:hidden path="newspaper" /> 
+	
 	
 	<acme:textbox code="cosax.title" path="title"/>
 	
@@ -38,7 +40,7 @@
 	<acme:submit name="save" code="cosax.save"/>
 	
 	<spring:message code="cosax.cancel" var="cancel"/>
-	<input type="button" name="cancel" value="${cancel}" onclick="javascript:relativeRedir('admin/cosax/list.do');" />
+	<input type="button" name="cancel" value="${cancel}" onclick="javascript:relativeRedir('administrator/cosax/list.do');" />
 
 	</form:form>
 	

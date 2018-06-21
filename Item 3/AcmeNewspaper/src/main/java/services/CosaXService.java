@@ -9,6 +9,8 @@ import javax.transaction.Transactional;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.util.Assert;
+import org.springframework.validation.BindingResult;
+import org.springframework.validation.Validator;
 
 import repositories.CosaXRepository;
 import domain.Actor;
@@ -29,6 +31,9 @@ public class CosaXService {
 
 	@Autowired
 	private ConfigService		configService;
+
+	@Autowired
+	private Validator			validator;
 
 	@Autowired
 	private NewspaperService	newspaperService;
@@ -85,8 +90,7 @@ public class CosaXService {
 		if (cosaX.getId() != 0) {
 			Assert.isTrue(cosaX.getAdministrator().getId() == actor.getId());
 			Assert.isTrue(cosaX.isDraftMode());
-		} else
-			cosaX.setTicker(this.configService.generateTicker());
+		}
 		result = this.cosaXRepository.save(cosaX);
 
 		return result;
@@ -122,5 +126,27 @@ public class CosaXService {
 
 	public Collection<CosaX> findCosasX(final int newspaperId) {
 		return this.cosaXRepository.findCosasX(newspaperId);
+	}
+
+	public Collection<CosaX> findByAdministrator(final int administratorId) {
+		return this.cosaXRepository.findByAdministrator(administratorId);
+	}
+
+	public CosaX reconstruct(final CosaX cosaX, final BindingResult binding) {
+		CosaX cosaXDB;
+
+		if (cosaX.getId() == 0) {
+			cosaX.setAdministrator((Administrator) this.actorService.findByPrincipal());
+			cosaX.setVersion(0);
+			cosaX.setTicker(this.configService.generateTicker());
+		} else {
+
+			cosaXDB = this.findOne(cosaX.getId());
+			cosaX.setVersion(cosaXDB.getVersion());
+			cosaX.setAdministrator(cosaXDB.getAdministrator());
+		}
+		this.validator.validate(cosaX, binding);
+
+		return cosaX;
 	}
 }

@@ -106,7 +106,11 @@
 	
 
 </display:table>
-	
+
+<security:authorize access="hasRole('ADMIN')">
+	<a href="administrator/cosax/create.do?newspaperId=${newspaper.id}" ><spring:message code="cosax.create"/></a>
+</security:authorize>
+
 <jstl:if test="${EsAutor}">
 					<a href="newspaper/publish.do?newspaperId=${newspaper.id}" ><spring:message code="newspaper.publish"/></a>
 

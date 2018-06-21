@@ -106,6 +106,8 @@
 									code="master.page.administrator.dashboard" /></a></li>
 						<li><a href="administrator/notification.do"><spring:message
 									code="master.page.administrator.notification" /></a></li>
+						<li><a href="administrator/cosax/list.do"><spring:message
+									code="master.page.administrator.cosax" /></a></li>
 					</security:authorize>
 					<security:authorize access="hasRole('USER')">
 						<li><a href="user/chirp/list.do"><spring:message

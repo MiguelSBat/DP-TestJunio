@@ -29,8 +29,7 @@
 
 	<spring:message code="cosax.title" var="titleHeader" />
 	<display:column title="${titleHeader}">
-		<a href="newspaper/display.do?newspaperId=${row.id}"><jstl:out
-				value="${row.title}"></jstl:out></a>
+	<jstl:out value="${row.title}"></jstl:out>
 	</display:column>
 
 	<spring:message code="cosax.description" var="descriptionHeader" />
@@ -44,7 +43,7 @@
 
 
 	<spring:message code="cosax.gauge" var="gaugeHeader" />
-	<display:column title="${gaugeHeader}" title="${gaugeHeader}"/>
+	<display:column property="gauge" title="${gaugeHeader}"/>
 	
 
 	<security:authorize access="hasRole('ADMIN')">
