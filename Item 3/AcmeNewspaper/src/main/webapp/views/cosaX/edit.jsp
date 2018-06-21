@@ -22,8 +22,7 @@
 	
 <form:form action="${requestURI}" modelAttribute="cosax">
 	
-	<form:hidden path="id" />
-	<form:hidden path="version" /> 
+	<form:hidden path="id" /> 
 	
 	<acme:textbox code="cosax.title" path="title"/>
 	
