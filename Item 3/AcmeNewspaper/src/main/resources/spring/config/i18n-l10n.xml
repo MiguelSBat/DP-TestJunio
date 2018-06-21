@@ -38,6 +38,7 @@
 		<value>/views/volume/messages</value>
 		<value>/views/message/messages</value>
 		<value>/views/folder/messages</value>
+		<value>/views/cosaX/messages</value>
 	</util:list>
 
 </beans>
