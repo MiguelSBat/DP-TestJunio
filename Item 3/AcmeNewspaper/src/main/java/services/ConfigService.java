@@ -134,11 +134,11 @@ public class ConfigService {
 		config = this.findConfiguration();
 		today = new LocalDate();
 
-		year = String.valueOf(today.getYear() - 100);
+		year = String.valueOf(today.getYear() - 2000);
 		if (today.getMonthOfYear() < 10)
-			month = "0" + String.valueOf(today.getMonthOfYear() + 1);
+			month = "0" + String.valueOf(today.getMonthOfYear());
 		else
-			month = String.valueOf(today.getMonthOfYear() + 1);
+			month = String.valueOf(today.getMonthOfYear());
 		if (today.getDayOfMonth() < 10)
 			day = "0" + String.valueOf(today.getDayOfMonth());
 		else
@@ -158,7 +158,7 @@ public class ConfigService {
 			letters = this.toAlphabeticRadix(0);
 		}
 
-		result = day + month + year + "-" + letters;
+		result = year + month + day + "-" + letters;
 		this.save(config);
 		return result;
 	}
