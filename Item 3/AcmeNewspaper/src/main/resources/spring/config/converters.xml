@@ -60,7 +60,10 @@
 
 		<bean class="converters.AdvertisementToStringConverter" />
 		<bean class="converters.StringToAdvertisementConverter" />
-
+	
+		<bean class="converters.CosaXToStringConverter" />
+		<bean class="converters.StringToCosaXConverter" />
+		
 		<!-- 
 			Add your own converters using entries of the following form: 
 			<bean class="converters.Class1ToClass2" /> 
