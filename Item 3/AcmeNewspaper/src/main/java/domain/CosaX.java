@@ -17,7 +17,7 @@ import org.hibernate.validator.constraints.Range;
 @Access(AccessType.PROPERTY)
 public class CosaX extends DomainEntity {
 
-	private String	ticket;
+	private String	ticker;
 	private String	title;
 	private String	description;
 	private Integer	gauge;
@@ -28,12 +28,12 @@ public class CosaX extends DomainEntity {
 	@NotBlank
 	@Pattern(regexp = "[0-9]{6}-[A-Z]{4}")
 	@Column(unique = true)
-	public String getTicket() {
-		return this.ticket;
+	public String getTicker() {
+		return this.ticker;
 	}
 
-	public void setTicket(final String ticket) {
-		this.ticket = ticket;
+	public void setTicker(final String ticket) {
+		this.ticker = ticket;
 	}
 
 	@NotBlank
