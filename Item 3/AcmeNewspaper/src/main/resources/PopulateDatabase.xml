@@ -1804,4 +1804,34 @@
 			</list>
 		</property>
 	</bean>
+	
+	<!-- CosaX -->
+	
+	<bean id="cosaX1" class="domain.CosaX">
+		<property name="ticker" value="111111-AAAA" />
+		<property name="title" value="titulo1" />
+		<property name="description" value="descripcion" />
+		<property name="gauge" value="3" />
+		<property name="publicationDate">
+			<null></null>
+		</property>
+		<property name="draftMode" value="false"/>
+		<property name="administrator" ref="admin"/>
+		<property name="newspaper" ref="newspaper1"/>
+	</bean>
+	
+	<bean id="cosaX2" class="domain.CosaX">
+		<property name="ticker" value="111111-AAAB" />
+		<property name="title" value="titulo2" />
+		<property name="description" value="descripcion" />
+		<property name="gauge" value="3" />
+		<property name="publicationDate" value="2017/09/15 8:00"/>
+		<property name="draftMode" value="false"/>
+		<property name="administrator" ref="admin"/>
+		<property name="newspaper" ref="newspaper2"/>
+	</bean>
+	
+
+	
+
 </beans>
