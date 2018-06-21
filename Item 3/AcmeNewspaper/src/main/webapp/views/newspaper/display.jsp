@@ -81,10 +81,9 @@
 	</jstl:if>
 
 </div>
-	<jstl:forEach items="${cosasX}" var="cosax">
+	
 			</br>
-<display:table pagesize="5" class="displaytag" 
-	name="cosaXs"  id="row">
+<display:table pagesize="5" class="displaytag" name="cosasX"  id="row">
 
 	<spring:message code="cosax.title" var="titleHeader" />
 	<display:column title="${titleHeader}">
@@ -103,21 +102,11 @@
 
 
 	<spring:message code="cosax.gauge" var="gaugeHeader" />
-	<display:column title="${gaugeHeader}" title="${gaugeHeader}"/>
+	<display:column title="${gaugeHeader}"/>
 	
 
-	<security:authorize access="hasRole('ADMIN')">
-		<display:column>
-			<a href="administrator/cosax/edit.do?cosaxId=${row.id}"><spring:message
-					code="cosax.edit" /></a>
-		</display:column>
-		<display:column>
-			<a href="administrator/cosax/delete.do?cosaxId=${row.id}"><spring:message
-					code="chirp.delete" /></a>
-		</display:column>
-	</security:authorize>
 </display:table>
-	</jstl:forEach>
+	
 <jstl:if test="${EsAutor}">
 					<a href="newspaper/publish.do?newspaperId=${newspaper.id}" ><spring:message code="newspaper.publish"/></a>
 
