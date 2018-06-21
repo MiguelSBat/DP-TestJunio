@@ -92,6 +92,22 @@ public class CosaXService {
 		return result;
 	}
 
+	public CosaX setFinalMode(final CosaX cosaX) {
+		CosaX result;
+		Actor actor;
+		Date date;
+
+		date = new Date();
+		actor = this.actorService.findByPrincipal();
+		Assert.isTrue(cosaX.getAdministrator().getId() == actor.getId());
+		if (cosaX.getPublicationDate() != null && cosaX.getPublicationDate().before(date))
+			cosaX.setPublicationDate(null);
+		cosaX.setDraftMode(false);
+		result = this.cosaXRepository.save(cosaX);
+		return result;
+
+	}
+
 	public CosaX findOne(final int cosaX) {
 		CosaX result;
 

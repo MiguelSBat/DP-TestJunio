@@ -30,6 +30,8 @@ public class CosaXTest extends AbstractTest {
 		final Object[][] testingData = {
 			{ // 
 				"admin", "title", "text", 3, null, false, null
+			}, { // 
+				"admin", "title", "text", 3, null, true, IllegalArgumentException.class
 			}
 		};
 
@@ -57,6 +59,14 @@ public class CosaXTest extends AbstractTest {
 			cosaX.setDraftMode(true);
 			cosaX.setGauge(gauge);
 			cosaX.setPublicationDate(publication);
+			cosaX.setTitle(title);
+			cosaX = this.cosaXService.save(cosaX);
+
+			if (draftMode)
+				cosaX = this.cosaXService.setFinalMode(cosaX);
+
+			cosaX.setDescription(description);
+			cosaX.setGauge(gauge);
 			cosaX.setTitle(title);
 			cosaX = this.cosaXService.save(cosaX);
 
