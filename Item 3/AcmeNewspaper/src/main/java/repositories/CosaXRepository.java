@@ -12,6 +12,6 @@ import domain.CosaX;
 @Repository
 public interface CosaXRepository extends JpaRepository<CosaX, Integer> {
 
-	@Query("select x from CosaX n where n.newspaper.id=?1 and (x.publicationDate is null or x.publicationDate>CURRENT_timestamp")
+	@Query("select c from CosaX c where c.newspaper.id=?1 and (c.publicationDate is null or c.publicationDate>CURRENT_timestamp")
 	Collection<CosaX> findCosasX(int NewspaperId);
 }
