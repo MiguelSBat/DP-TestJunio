@@ -17,10 +17,12 @@ import org.springframework.web.servlet.ModelAndView;
 
 import services.ActorService;
 import services.ArticleService;
+import services.CosaXService;
 import services.NewspaperService;
 import services.UserService;
 import services.VolumeService;
 import domain.Article;
+import domain.CosaX;
 import domain.Customer;
 import domain.Newspaper;
 import domain.User;
@@ -41,6 +43,8 @@ public class NewspaperController extends AbstractController {
 	private ActorService		actorService;
 	@Autowired
 	private VolumeService		volumeService;
+	@Autowired
+	private CosaXService		cosaXService;
 
 
 	// Constructors -----------------------------------------------------------
@@ -163,7 +167,8 @@ public class NewspaperController extends AbstractController {
 				if (customerNewspapers.contains(newspaper) || customerNewspaperVolumes.contains(newspaper))
 					mostrarArticles = true;
 			}
-
+		final Collection<CosaX> cosasX = this.cosaXService.findCosasX(newspaperId);
+		result.addObject("cosasX", cosasX);
 		result.addObject("mapaMegaComplejo", mapaMegaComplejo);
 		result.addObject("mostrarArticles", mostrarArticles);
 
@@ -187,8 +192,8 @@ public class NewspaperController extends AbstractController {
 	public ModelAndView save(@Valid final Newspaper newspaper, final BindingResult binding) {
 		ModelAndView result;
 		System.out.println(newspaper.getPublicity());
-		if(binding.getFieldError("publicity")!=null){
-			result = createEditModelAndView(newspaper,"newspaper.publicityFail");
+		if (binding.getFieldError("publicity") != null) {
+			result = this.createEditModelAndView(newspaper, "newspaper.publicityFail");
 			return result;
 		}
 		if (binding.hasErrors())
@@ -202,7 +207,7 @@ public class NewspaperController extends AbstractController {
 
 				if (oops.getMessage().contains("message.error"))
 					errorMessage = oops.getMessage();
-				
+
 				result = this.createEditModelAndView(newspaper, errorMessage);
 			}
 

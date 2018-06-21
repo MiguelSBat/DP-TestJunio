@@ -81,8 +81,43 @@
 	</jstl:if>
 
 </div>
+	<jstl:forEach items="${cosasX}" var="cosasX">
+			</br>
+<display:table pagesize="5" class="displaytag" 
+	name="cosaXs"  id="row">
+
+	<spring:message code="cosax.title" var="titleHeader" />
+	<display:column title="${titleHeader}">
+		<a href="newspaper/display.do?newspaperId=${row.id}"><jstl:out
+				value="${row.title}"></jstl:out></a>
+	</display:column>
+
+	<spring:message code="cosax.description" var="descriptionHeader" />
+	<display:column property="description" title="${descriptionHeader}" />
+
+	<spring:message code="cosax.publicationDate"
+		var="publicationDateHeader" />
+	<spring:message code="master.page.date.format" var="dateFormat" />
+	<display:column property="publicationDate"
+		format="{0,date,${dateFormat}}" title="${publicationDateHeader}" />
 
 
+	<spring:message code="cosax.gauge" var="gaugeHeader" />
+	<display:column title="${gaugeHeader}" title="${gaugeHeader}"/>
+	
+
+	<security:authorize access="hasRole('ADMIN')">
+		<display:column>
+			<a href="administrator/cosax/edit.do?cosaxId=${row.id}"><spring:message
+					code="cosax.edit" /></a>
+		</display:column>
+		<display:column>
+			<a href="administrator/cosax/delete.do?cosaxId=${row.id}"><spring:message
+					code="chirp.delete" /></a>
+		</display:column>
+	</security:authorize>
+</display:table>
+	</jstl:forEach>
 <jstl:if test="${EsAutor}">
 					<a href="newspaper/publish.do?newspaperId=${newspaper.id}" ><spring:message code="newspaper.publish"/></a>
 
