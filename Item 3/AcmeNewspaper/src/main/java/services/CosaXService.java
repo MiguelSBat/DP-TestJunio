@@ -89,4 +89,7 @@ public class CosaXService {
 		this.cosaXRepository.flush();
 	}
 
+	public Collection<CosaX> findCosasX(final int newspaperId) {
+		return this.cosaXRepository.findCosasX(newspaperId);
+	}
 }
