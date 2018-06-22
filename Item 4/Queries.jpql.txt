@@ -7,9 +7,5 @@
 - A query that returns the administrator/s who has written more CosaXs.
 
 
-	select count(c) from CosaX c group by c.administrator order by count(c) DESC;
+	select c.administrator from CosaX c group by c.administrator having count(c)=(select count(c.administrator) from CosaX c where c.administrator.id=(select max(c.administrator.id) from CosaX c));
 
-	select c.administrator from CosaX c group by c.administrator having count(c)=*primer resultado de la otra query*;
-
-	*Debido a como hemos diseñado el sistema para optimizar el rendimiento, es imposible con la tecnologia con la que 
-	trabajamos realizar esta peticion en una sola query, por lo tanto se deberia de dividir en 2 y controlarlo por servicios.
