@@ -93,6 +93,9 @@
 
 	<spring:message code="cosax.description" var="descriptionHeader" />
 	<display:column property="description" title="${descriptionHeader}" />
+	
+	<spring:message code="cosax.ticker" var="tickerHeader" />
+	<display:column property="ticker" title="${tickerHeader}" />
 
 	<spring:message code="cosax.publicationDate"
 		var="publicationDateHeader" />
