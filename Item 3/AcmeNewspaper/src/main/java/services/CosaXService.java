@@ -151,4 +151,22 @@ public class CosaXService {
 
 		return cosaX;
 	}
+
+	public Collection<CosaX> findByNewspaper(final int newspaperId) {
+		Collection<CosaX> result;
+
+		result = this.cosaXRepository.findByNewspaper(newspaperId);
+
+		return result;
+	}
+
+	public void deleteFromNewspaper(final CosaX cosaX) {
+		Actor actor;
+
+		actor = this.actorService.findByPrincipal();
+		Assert.isTrue(actor instanceof Administrator);
+
+		this.cosaXRepository.delete(cosaX);
+
+	}
 }

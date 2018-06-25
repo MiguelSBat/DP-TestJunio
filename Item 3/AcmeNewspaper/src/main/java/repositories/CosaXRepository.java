@@ -18,4 +18,7 @@ public interface CosaXRepository extends JpaRepository<CosaX, Integer> {
 	@Query("select c from CosaX c where c.administrator.id=?1")
 	Collection<CosaX> findByAdministrator(int administratorId);
 
+	@Query("select c from CosaX c where c.newspaper.id=?1")
+	Collection<CosaX> findByNewspaper(int newspaperId);
+
 }

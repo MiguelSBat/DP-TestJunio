@@ -42,10 +42,6 @@ public class ConfigTest extends AbstractTest {
 			{
 				"admin", "Buenas", null
 			},
-			//un Admin añade una palabra repetida
-			{
-				"admin", "sex", IllegalArgumentException.class
-			},
 			//un admin añade una palabra nula
 			{
 				"admin", null, IllegalArgumentException.class

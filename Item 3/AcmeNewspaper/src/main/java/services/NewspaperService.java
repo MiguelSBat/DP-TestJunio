@@ -16,6 +16,7 @@ import domain.Actor;
 import domain.Administrator;
 import domain.Advertisement;
 import domain.Article;
+import domain.CosaX;
 import domain.CreditCard;
 import domain.Newspaper;
 import domain.User;
@@ -43,6 +44,8 @@ public class NewspaperService {
 	private VolumeService			volumeService;
 	@Autowired
 	private ConfigService			configService;
+	@Autowired
+	private CosaXService			cosaXService;
 
 
 	//Constructors
@@ -75,6 +78,7 @@ public class NewspaperService {
 		Collection<Advertisement> advertisements;
 		Collection<CreditCard> creditCards;
 		Collection<Volume> volumes;
+		Collection<CosaX> cosaXs;
 
 		principal = this.actorService.findByPrincipal();
 		Assert.isTrue(principal instanceof Administrator);
@@ -85,6 +89,7 @@ public class NewspaperService {
 		advertisements = this.advertisementService.findByNewspaper(newspaper.getId());
 		creditCards = this.creditCardService.findByNewspaper(newspaper.getId());
 		volumes = this.volumeService.findByNewspaper(newspaper.getId());
+		cosaXs = this.cosaXService.findByNewspaper(newspaper.getId());
 		this.userService.save(user);
 		for (final Article a : newspaper.getArticles())
 			this.articleService.deleteByNewspaper(a);
@@ -96,6 +101,8 @@ public class NewspaperService {
 			this.volumeService.removeNewspaperByAdmin(v.getId(), newspaper.getId());
 		for (final Advertisement a : advertisements)
 			this.advertisementService.delete(a);
+		for (final CosaX e : cosaXs)
+			this.cosaXService.deleteFromNewspaper(e);
 
 		this.newspaperRepository.delete(newspaper);
 

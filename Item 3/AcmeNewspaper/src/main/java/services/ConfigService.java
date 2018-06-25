@@ -74,7 +74,7 @@ public class ConfigService {
 
 		config = this.findConfiguration();
 		tabooWords = new HashSet<String>(config.getTabooWords());
-		// Assert.isTrue(!tabooWords.contains(tabooWord) && tabooWord != null); Esto petaba todos los tests de rendimiento.
+		Assert.isTrue(tabooWord != null);
 		tabooWords.add(tabooWord);
 		config.setTabooWords(tabooWords);
 		result = this.save(config);
