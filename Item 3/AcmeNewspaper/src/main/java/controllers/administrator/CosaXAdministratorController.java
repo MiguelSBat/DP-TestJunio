@@ -84,15 +84,16 @@ public class CosaXAdministratorController extends AbstractController {
 		ModelAndView result;
 
 		cosaX = this.cosaXService.reconstruct(cosaX, binding);
-		if (binding.hasErrors())
+
+		if (binding.hasErrors()){
 			result = this.createEditModelAndView(cosaX);
-		else
+		}else
 			try {
 				this.cosaXService.save(cosaX);
 				result = new ModelAndView("redirect:/newspaper/display.do?newspaperId=" + cosaX.getNewspaper().getId());
 			} catch (final Throwable oops) {
 				String errorMessage = "cosaX.commit.error";
-				if (oops.getMessage().contains("message.error"))
+				if (oops.getMessage().contains("message.error")||oops.getMessage()=="cosaX.fechaPasada")
 					errorMessage = oops.getMessage();
 				result = this.createEditModelAndView(cosaX, errorMessage);
 				result.addObject("requestURI", "administrator/cosaX/edit.do?cosaxId=" + cosaX.getId());

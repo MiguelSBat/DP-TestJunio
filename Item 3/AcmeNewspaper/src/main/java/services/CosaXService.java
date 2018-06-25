@@ -86,7 +86,8 @@ public class CosaXService {
 		date = new Date();
 		actor = this.actorService.findByPrincipal();
 		Assert.isTrue(actor instanceof Administrator);
-		Assert.isTrue(cosaX.getPublicationDate() == null || cosaX.getPublicationDate().after(date));
+		
+		Assert.isTrue(cosaX.getPublicationDate() == null || cosaX.getPublicationDate().after(date),"cosaX.fechaPasada");
 		if (cosaX.getId() != 0) {
 			cosaxDB = this.findOne(cosaX.getId());
 			Assert.isTrue(cosaX.getAdministrator().getId() == actor.getId());

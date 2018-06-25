@@ -25,7 +25,7 @@
 <!-- Listing grid -->
 
 <display:table pagesize="5" class="displaytag" 
-	name="cosaXs" requestURI="cosaX/list.do" id="row">
+	name="cosaXs" requestURI="administrator/cosaX/list.do" id="row">
 
 	<spring:message code="cosaX.title" var="titleHeader" />
 	<display:column title="${titleHeader}">
@@ -58,6 +58,7 @@
 					code="cosaX.edit" /></a>
 		</jstl:if>
 		</display:column>
+		
 		
 		<display:column>
 		<jstl:if test="${row.draftMode==true}">	

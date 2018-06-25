@@ -32,8 +32,11 @@
 	
 	<acme:textbox code="cosaX.gauge" path="gauge"/>
 	
-	<acme:textbox code="cosaX.publicationDate" path="publicationDate"/>
-	
+	<spring:message code="newspaper.publicationDate" var="publicationDate"/>
+	<form:label path="publicationDate">${publicationDate}</form:label>
+	<form:input path="publicationDate" placeholder="dd/MM/yyyy hh:mm"/>
+	<form:errors cssClass="error" path="publicationDate"/>
+
 	<input type="checkbox" name="draftMode" id="draftMode" value="True"><spring:message code="cosaX.draftMode"/>
 	<br/>
 	

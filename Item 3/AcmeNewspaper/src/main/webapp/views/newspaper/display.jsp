@@ -83,7 +83,7 @@
 </div>
 	
 			</br>
-<display:table pagesize="5" class="displaytag" name="cosasX"  id="row">
+<display:table pagesize="5" class="displaytag" name="cosasX"  requestURI="newspaper/display.do" id="row">
 
 	<spring:message code="cosaX.title" var="titleHeader" />
 	<display:column title="${titleHeader}">
