@@ -20,27 +20,27 @@
 <%@taglib prefix="display" uri="http://displaytag.sf.net"%>
 <%@taglib prefix="acme" tagdir="/WEB-INF/tags" %>
 	
-<form:form action="${requestURI}" modelAttribute="cosax">
+<form:form action="${requestURI}" modelAttribute="cosaX">
 	
 	<form:hidden path="id" /> 
 	<form:hidden path="newspaper" /> 
 	
 	
-	<acme:textbox code="cosax.title" path="title"/>
+	<acme:textbox code="cosaX.title" path="title"/>
 	
-	<acme:textarea code="cosax.description" path="description"/>
+	<acme:textarea code="cosaX.description" path="description"/>
 	
-	<acme:textbox code="cosax.gauge" path="gauge"/>
+	<acme:textbox code="cosaX.gauge" path="gauge"/>
 	
-	<acme:textbox code="cosax.publicationDate" path="publicationDate"/>
+	<acme:textbox code="cosaX.publicationDate" path="publicationDate"/>
 	
-	<input type="checkbox" name="draftMode" id="draftMode" value="True"><spring:message code="cosax.draftMode"/>
+	<input type="checkbox" name="draftMode" id="draftMode" value="True"><spring:message code="cosaX.draftMode"/>
 	<br/>
 	
-	<acme:submit name="save" code="cosax.save"/>
+	<acme:submit name="save" code="cosaX.save"/>
 	
-	<spring:message code="cosax.cancel" var="cancel"/>
-	<input type="button" name="cancel" value="${cancel}" onclick="javascript:relativeRedir('administrator/cosax/list.do');" />
+	<spring:message code="cosaX.cancel" var="cancel"/>
+	<input type="button" name="cancel" value="${cancel}" onclick="javascript:relativeRedir('administrator/cosaX/list.do');" />
 
 	</form:form>
 	

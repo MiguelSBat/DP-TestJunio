@@ -25,27 +25,27 @@
 <!-- Listing grid -->
 
 <display:table pagesize="5" class="displaytag" 
-	name="cosaXs" requestURI="cosax/list.do" id="row">
+	name="cosaXs" requestURI="cosaX/list.do" id="row">
 
-	<spring:message code="cosax.title" var="titleHeader" />
+	<spring:message code="cosaX.title" var="titleHeader" />
 	<display:column title="${titleHeader}">
 	<jstl:out value="${row.title}"></jstl:out>
 	</display:column>
 
-	<spring:message code="cosax.description" var="descriptionHeader" />
+	<spring:message code="cosaX.description" var="descriptionHeader" />
 	<display:column property="description" title="${descriptionHeader}" />
 	
-	<spring:message code="cosax.ticker" var="tickerHeader" />
+	<spring:message code="cosaX.ticker" var="tickerHeader" />
 	<display:column property="ticker" title="${tickerHeader}" />
 
-	<spring:message code="cosax.publicationDate"
+	<spring:message code="cosaX.publicationDate"
 		var="publicationDateHeader" />
-	<spring:message code="cosax.page.date.format" var="dateFormat" />
+	<spring:message code="cosaX.page.date.format" var="dateFormat" />
 	<display:column property="publicationDate"
 		format="{0,date,${dateFormat}}" title="${publicationDateHeader}" />
 
-	<spring:message code="cosax.gauge" var="cosaxGauge" />
-	<display:column title="${cosaxGauge}" sortable="false">
+	<spring:message code="cosaX.gauge" var="cosaXGauge" />
+	<display:column title="${cosaXGauge}" sortable="false">
 		<jstl:set value="${row.gauge}" var="color"/>
 		<div class="gauge${color}">${row.gauge}</div>
 	</display:column>
@@ -54,14 +54,14 @@
 		
 		<display:column>
 		<jstl:if test="${row.draftMode==true}">	
-			<a href="administrator/cosax/edit.do?cosaxId=${row.id}"><spring:message
-					code="cosax.edit" /></a>
+			<a href="administrator/cosaX/edit.do?cosaxId=${row.id}"><spring:message
+					code="cosaX.edit" /></a>
 		</jstl:if>
 		</display:column>
 		
 		<display:column>
 		<jstl:if test="${row.draftMode==true}">	
-			<a href="administrator/cosax/delete.do?cosaxId=${row.id}"><spring:message
+			<a href="administrator/cosaX/delete.do?cosaxId=${row.id}"><spring:message
 					code="chirp.delete" /></a>
 		</jstl:if>
 		</display:column>

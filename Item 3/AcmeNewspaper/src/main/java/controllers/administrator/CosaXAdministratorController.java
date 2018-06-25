@@ -6,6 +6,7 @@ import java.util.Collection;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.validation.BindingResult;
+import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
@@ -18,7 +19,7 @@ import domain.Actor;
 import domain.CosaX;
 
 @Controller
-@RequestMapping("/administrator/cosax")
+@RequestMapping("/administrator/cosaX")
 public class CosaXAdministratorController extends AbstractController {
 
 	//Service -----------------------------------------------------------------
@@ -45,9 +46,8 @@ public class CosaXAdministratorController extends AbstractController {
 
 		principal = this.actorService.findByPrincipal();
 		cosaXs = this.cosaXService.findByAdministrator(principal.getId());
-		result = new ModelAndView("cosax/list");
+		result = new ModelAndView("cosaX/list");
 		result.addObject("cosaXs", cosaXs);
-		result.addObject("requestURI", "administrator/cosax/list.do");
 
 		return result;
 	}
@@ -57,11 +57,11 @@ public class CosaXAdministratorController extends AbstractController {
 	@RequestMapping(value = "/create", method = RequestMethod.GET)
 	public ModelAndView create(@RequestParam final int newspaperId) {
 		ModelAndView result;
-		CosaX cosax;
+		CosaX cosaX;
 
-		cosax = this.cosaXService.create(newspaperId);
-		result = this.createEditModelAndView(cosax);
-		result.addObject("requestURI", "administrator/cosax/edit.do?newspaperId=" + newspaperId);
+		cosaX = this.cosaXService.create(newspaperId);
+		result = this.createEditModelAndView(cosaX);
+		result.addObject("requestURI", "administrator/cosaX/edit.do?newspaperId=" + newspaperId);
 
 		return result;
 	}
@@ -69,18 +69,18 @@ public class CosaXAdministratorController extends AbstractController {
 	@RequestMapping(value = "/edit", method = RequestMethod.GET)
 	public ModelAndView edit(@RequestParam final int cosaxId) {
 		ModelAndView result;
-		CosaX cosax;
+		CosaX cosaX;
 
-		cosax = this.cosaXService.findOne(cosaxId);
-		result = this.createEditModelAndView(cosax);
-		result.addObject("newspaperId", cosax.getNewspaper().getId());
-		result.addObject("requestURI", "administrator/cosax/edit.do?cosaxId=" + cosaxId);
+		cosaX = this.cosaXService.findOne(cosaxId);
+		result = this.createEditModelAndView(cosaX);
+		result.addObject("newspaperId", cosaX.getNewspaper().getId());
+		result.addObject("requestURI", "administrator/cosaX/edit.do?cosaxId=" + cosaxId);
 
 		return result;
 	}
 
 	@RequestMapping(value = "/edit", method = RequestMethod.POST, params = "save")
-	public ModelAndView save(CosaX cosaX, final BindingResult binding) {
+	public ModelAndView save(@ModelAttribute CosaX cosaX, final BindingResult binding) {
 		ModelAndView result;
 
 		cosaX = this.cosaXService.reconstruct(cosaX, binding);
@@ -91,11 +91,11 @@ public class CosaXAdministratorController extends AbstractController {
 				this.cosaXService.save(cosaX);
 				result = new ModelAndView("redirect:/newspaper/display.do?newspaperId=" + cosaX.getNewspaper().getId());
 			} catch (final Throwable oops) {
-				String errorMessage = "cosax.commit.error";
+				String errorMessage = "cosaX.commit.error";
 				if (oops.getMessage().contains("message.error"))
 					errorMessage = oops.getMessage();
 				result = this.createEditModelAndView(cosaX, errorMessage);
-				result.addObject("requestURI", "administrator/cosax/edit.do?cosaxId=" + cosaX.getId());
+				result.addObject("requestURI", "administrator/cosaX/edit.do?cosaxId=" + cosaX.getId());
 			}
 
 		return result;
@@ -105,30 +105,30 @@ public class CosaXAdministratorController extends AbstractController {
 	@RequestMapping(value = "/delete", method = RequestMethod.GET)
 	public ModelAndView delete(final int cosaxId) {
 		ModelAndView result;
-		CosaX cosax;
+		CosaX cosaX;
 
-		cosax = this.cosaXService.findOne(cosaxId);
-		this.cosaXService.delete(cosax);
-		result = new ModelAndView("redirect:/administrator/cosax/list.do");
+		cosaX = this.cosaXService.findOne(cosaxId);
+		this.cosaXService.delete(cosaX);
+		result = new ModelAndView("redirect:/administrator/cosaX/list.do");
 
 		return result;
 	}
 
 	// Ancillary methods ------------------------------------------------------
 
-	protected ModelAndView createEditModelAndView(final CosaX cosax) {
+	protected ModelAndView createEditModelAndView(final CosaX cosaX) {
 		ModelAndView result;
 
-		result = this.createEditModelAndView(cosax, null);
+		result = this.createEditModelAndView(cosaX, null);
 
 		return result;
 	}
 
-	protected ModelAndView createEditModelAndView(final CosaX cosax, final String message) {
+	protected ModelAndView createEditModelAndView(final CosaX cosaX, final String message) {
 		ModelAndView result;
 
-		result = new ModelAndView("cosax/edit");
-		result.addObject("cosax", cosax);
+		result = new ModelAndView("cosaX/edit");
+		result.addObject("cosaX", cosaX);
 		result.addObject("message", message);
 
 		return result;
