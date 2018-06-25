@@ -25,6 +25,9 @@ public class CosaXTest extends AbstractTest {
 	@Autowired
 	private CosaXService	cosaXService;
 
+	@Autowired
+	private ConfigService	configService;
+
 
 	@Test
 	public void createAndSaveDriver() {
@@ -125,6 +128,7 @@ public class CosaXTest extends AbstractTest {
 			cosaX.setGauge(gauge);
 			cosaX.setPublicationDate(publication);
 			cosaX.setTitle(title);
+			cosaX.setTicker(this.configService.generateTicker());
 			cosaX = this.cosaXService.save(cosaX);
 
 			if (draftMode)
