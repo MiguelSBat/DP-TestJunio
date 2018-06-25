@@ -99,7 +99,7 @@
 
 	<spring:message code="cosax.publicationDate"
 		var="publicationDateHeader" />
-	<spring:message code="master.page.date.format" var="dateFormat" />
+	<spring:message code="cosax.page.date.format" var="dateFormat" />
 	<display:column property="publicationDate"
 		format="{0,date,${dateFormat}}" title="${publicationDateHeader}" />
 
