@@ -1,0 +1,13 @@
+cd "c:\Program Files\MySQL\MySQL Server 5.5\bin"
+
+mysqldump -uroot -pV3rY=$tR0nG=P@$$w0rd$ acmenewspaper > "C:\Documents and Settings\Student\Desktop\Create-Acme-Newspaper.sql"
+
+mysql -uroot -pV3rY=$tR0nG=P@$$w0rd$ < "C:\AcmeNewspaper\Create-Acme-Newspaper.sql"
+
+
+
+mysql -uroot -pV3rY=$tR0nG=P@$$w0rd$
+
+select user, host, password from mysql.user;
+
+show grants for acme-user@%
